@@ -1,5 +1,5 @@
-const HomePage = () => {
-  return <div>MoviePage</div>;
+const MoviesPage = () => {
+  return <h1>Search Movies</h1>;
 };
 
-export default HomePage;
+export default MoviesPage;
