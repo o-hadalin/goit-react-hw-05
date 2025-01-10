@@ -23,3 +23,26 @@ export const fetchTrendingMovies = async () => {
     throw error;
   }
 };
+
+export const fetchMoviesByKeyword = async (query) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search/movie`, {
+      params: {
+        query,
+      },
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    });
+    return response.data.results.map(movie => ({
+      id: movie.id,
+      title: movie.title || movie.name,
+      poster: movie.poster_path
+        ? `${IMAGE_BASE_URL}${movie.poster_path}`
+        : null,
+    }));
+  } catch (error) {
+    console.error('Error fetching movies by keyword:', error);
+    throw error;
+  }
+};
