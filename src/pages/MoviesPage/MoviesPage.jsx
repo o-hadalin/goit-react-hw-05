@@ -16,7 +16,7 @@ const MoviesPage = () => {
   const validationSchema = Yup.object({
     query: Yup.string()
       .min(1, '1 character min')
-      .required('Required'),
+      .required('Required field'),
   });
 
   const handleSubmit = async (values, { resetForm }) => {
