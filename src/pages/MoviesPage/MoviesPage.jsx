@@ -1,17 +1,17 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
-import { fetchMoviesByKeyword } from '../../services/api'; 
-import styles from './MoviesPage.module.css';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { fetchMoviesByKeyword } from '../../services/api';
 import { useSearchParams } from 'react-router-dom';
-
+import MovieCast from '../../components/MovieCast/MovieCast'; 
+import Loader from '../../components/Loader/Loader'; 
+import styles from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); 
   const [searchParams, setSearchParams] = useSearchParams();
-
 
   const validationSchema = Yup.object({
     query: Yup.string()
@@ -21,8 +21,9 @@ const MoviesPage = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
+      setLoading(true); 
       const { query } = values;
-      setSearchParams({ query });
+      setSearchParams({ query }); 
       const results = await fetchMoviesByKeyword(query);
       setMovies(results);
       setError(null);
@@ -30,24 +31,30 @@ const MoviesPage = () => {
     } catch (err) {
       setError('Something went wrong. Please try again.');
       console.error(err);
+    } finally {
+      setLoading(false); 
     }
   };
-  
+
   useEffect(() => {
-    const query = searchParams.get('query'); // Отримуємо значення параметра
+    const query = searchParams.get('query'); 
     if (query) {
-      (async () => {
+      const fetchMovies = async () => {
         try {
+          setLoading(true); 
           const results = await fetchMoviesByKeyword(query);
           setMovies(results);
           setError(null);
         } catch (err) {
           setError('Failed to fetch movies.');
           console.error(err);
+        } finally {
+          setLoading(false); 
         }
-      })();
+      };
+      fetchMovies();
     }
-  }, [searchParams]);
+  }, [searchParams]); 
 
   return (
     <div className={styles.container}>
@@ -74,14 +81,17 @@ const MoviesPage = () => {
           </Form>
         )}
       </Formik>
+      {loading && <Loader />} {}
       {error && <p className={styles.error}>{error}</p>}
-      <ul className={styles.movieList}>
-        {movies.map(movie => (
-          <li key={movie.id} className={styles.movieItem}>
-            {movie.title}
-          </li>
-        ))}
-      </ul>
+      {movies.length > 0 ? (
+        <div className={styles.movieList}>
+          {movies.map(movie => (
+            <MovieCast key={movie.id} movie={movie} /> 
+          ))}
+        </div>
+      ) : (
+        !loading && <p className={styles.noMovies}>No movies found</p>
+      )}
     </div>
   );
 };

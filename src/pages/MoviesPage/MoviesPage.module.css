@@ -1,40 +1,37 @@
-.movies-page {
+.container {
     padding: 20px;
+    text-align: center;
   }
   
-  .search-form {
+  .form {
     margin-bottom: 20px;
   }
   
-  .search-form input {
-    padding: 8px;
+  .input {
+    padding: 10px;
     font-size: 16px;
-    width: 200px;
   }
   
-  .search-form button {
-    padding: 8px 12px;
-    font-size: 16px;
+  .button {
+    padding: 10px;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
     cursor: pointer;
   }
   
-  /* src/components/MovieList/MovieList.module.css */
-  .movie-list {
-    list-style: none;
-    padding: 0;
+  .error {
+    color: red;
   }
   
-  .movie-item {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
+  .movieList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
   }
   
-  .movie-item img {
-    max-width: 100px;
-    margin-right: 10px;
+  .noMovies {
+    color: gray;
+    font-size: 18px;
   }
   
-  .movie-item h3 {
-    margin: 0;
-  }
