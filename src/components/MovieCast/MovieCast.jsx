@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import styles from './MovieCast.module.css';
 
-const MovieCast = ({ movie }) => {
 const PLACEHOLDER_IMAGE = 'https://placehold.co/300x450?text=No+Poster&font=roboto';
 
+const MovieCast = ({ movie }) => {
   return (
     <div className={styles.card}>
       <img
-        src={movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : PLACEHOLDER_IMAGE}
+        src={movie.poster || PLACEHOLDER_IMAGE} // Використовуй поле `poster`
         alt={movie.title}
         className={styles.poster}
       />

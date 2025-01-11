@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { fetchMovieDetails } from '../../services/api';
 import Loader from '../../components/Loader/Loader';
 import styles from './MovieDetailsPage.module.css';
-const PLACEHOLDER_IMAGE = 'https://placehold.co/300x450?text=No+Poster&font=roboto';
 
+const PLACEHOLDER_IMAGE = 'https://placehold.co/300x450?text=No+Poster&font=roboto';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -46,16 +46,13 @@ const MovieDetailsPage = () => {
         <>
           <h1>{movie.title}</h1>
           <img
-            src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
-                : PLACEHOLDER_IMAGE}
+            src={movie.poster || PLACEHOLDER_IMAGE} // Використовуй поле `poster`
             alt={movie.title}
             className={styles.poster}
           />
           <p>{movie.overview}</p>
-          <p><strong>Release Date:</strong> {movie.release_date}</p>
-          <p><strong>Rating:</strong> {movie.vote_average}</p>
+          <p><strong>Release Date:</strong> {movie.releaseDate}</p>
+          <p><strong>Rating:</strong> {movie.rating}</p>
         </>
       )}
     </div>
