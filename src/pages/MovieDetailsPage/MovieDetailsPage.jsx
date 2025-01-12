@@ -1,4 +1,4 @@
-import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
+import { useParams, useNavigate, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieDetails } from '../../services/api';
 import Loader from '../../components/Loader/Loader';
@@ -9,6 +9,7 @@ const PLACEHOLDER_IMAGE = 'https://placehold.co/300x450?text=No+Poster&font=robo
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation(); 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,7 +32,11 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const handleGoBack = () => {
-    navigate(-1); 
+     if (location.state?.from) {
+      navigate(location.state.from);
+    } else {
+      navigate('/'); 
+    }
   };
 
   if (loading) return <Loader />;
@@ -62,6 +67,7 @@ const MovieDetailsPage = () => {
                   className={({ isActive }) =>
                     isActive ? styles.activeLink : styles.link
                   }
+                  state={{ from: location.state?.from }} 
                 >
                   Cast
                 </NavLink>
@@ -72,6 +78,7 @@ const MovieDetailsPage = () => {
                   className={({ isActive }) =>
                     isActive ? styles.activeLink : styles.link
                   }
+                  state={{ from: location.state?.from }} 
                 >
                   Reviews
                 </NavLink>
