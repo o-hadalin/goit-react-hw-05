@@ -5,7 +5,6 @@ const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGFhOTc0ZWI0NGU0MzFjZTE3ZDA1Yj
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
-// Загальний метод для запитів
 const apiClient = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -13,7 +12,6 @@ const apiClient = axios.create({
   },
 });
 
-// Запит трендових фільмів
 export const fetchTrendingMovies = async () => {
   try {
     const response = await apiClient.get('/trending/movie/day');
@@ -30,7 +28,6 @@ export const fetchTrendingMovies = async () => {
   }
 };
 
-// Запит фільмів за ключовим словом
 export const fetchMoviesByKeyword = async query => {
   try {
     const response = await apiClient.get('/search/movie', {
@@ -49,7 +46,6 @@ export const fetchMoviesByKeyword = async query => {
   }
 };
 
-// Запит деталей фільму
 export const fetchMovieDetails = async movieId => {
   try {
     const response = await apiClient.get(`/movie/${movieId}`);
@@ -71,7 +67,6 @@ export const fetchMovieDetails = async movieId => {
   }
 };
 
-// Запит акторського складу
 export const fetchMovieCast = async movieId => {
   try {
     const response = await apiClient.get(`/movie/${movieId}/credits`);
@@ -89,7 +84,6 @@ export const fetchMovieCast = async movieId => {
   }
 };
 
-// Запит оглядів фільму
 export const fetchMovieReviews = async movieId => {
   try {
     const response = await apiClient.get(`/movie/${movieId}/reviews`);

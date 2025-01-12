@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { fetchMoviesByKeyword } from '../../services/api';
 import { useSearchParams } from 'react-router-dom';
-import MovieCard from '../../components/MovieCard/MovieCard'; 
+import MovieList from '../../components/MovieList/MovieList'; 
 import Loader from '../../components/Loader/Loader'; 
 import styles from './MoviesPage.module.css';
 
@@ -84,11 +84,7 @@ const MoviesPage = () => {
       {loading && <Loader />} 
       {error && <p className={styles.error}>{error}</p>}
       {movies.length > 0 ? (
-        <div className={styles.movieList}>
-          {movies.map(movie => (
-            <MovieCard key={movie.id} movie={movie} /> 
-          ))}
-        </div>
+        <MovieList movies={movies} />
       ) : (
         !loading && <p className={styles.noMovies}>No movies found</p>
       )}
