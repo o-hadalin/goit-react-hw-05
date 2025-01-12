@@ -81,7 +81,7 @@ const MoviesPage = () => {
           location={location} 
         />
       ) : (
-        !loading && <p className={styles.noMovies}>No movies found</p>
+        !loading && !movies.length && query && <p className={styles.noMovies}>No movies found</p>
       )}
     </div>
   );
