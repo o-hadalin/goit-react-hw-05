@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { fetchMoviesByKeyword } from '../../services/api';
 import { useSearchParams } from 'react-router-dom';
-import MovieCast from '../../components/MovieCast/MovieCast'; 
+import MovieCard from '../../components/MovieCard/MovieCard'; 
 import Loader from '../../components/Loader/Loader'; 
 import styles from './MoviesPage.module.css';
 
@@ -81,12 +81,12 @@ const MoviesPage = () => {
           </Form>
         )}
       </Formik>
-      {loading && <Loader />} {}
+      {loading && <Loader />} 
       {error && <p className={styles.error}>{error}</p>}
       {movies.length > 0 ? (
         <div className={styles.movieList}>
           {movies.map(movie => (
-            <MovieCast key={movie.id} movie={movie} /> 
+            <MovieCard key={movie.id} movie={movie} /> 
           ))}
         </div>
       ) : (

@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieDetails } from '../../services/api';
 import Loader from '../../components/Loader/Loader';
@@ -46,13 +46,39 @@ const MovieDetailsPage = () => {
         <>
           <h1>{movie.title}</h1>
           <img
-            src={movie.poster || PLACEHOLDER_IMAGE} // Використовуй поле `poster`
+            src={movie.poster || PLACEHOLDER_IMAGE}
             alt={movie.title}
             className={styles.poster}
           />
           <p>{movie.overview}</p>
           <p><strong>Release Date:</strong> {movie.releaseDate}</p>
           <p><strong>Rating:</strong> {movie.rating}</p>
+          <div className={styles.additionalInfo}>
+            <h2>Additional Information</h2>
+            <ul>
+              <li>
+                <NavLink
+                  to="cast"
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : styles.link
+                  }
+                >
+                  Cast
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="reviews"
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : styles.link
+                  }
+                >
+                  Reviews
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+          <Outlet context={{ movie }} />
         </>
       )}
     </div>

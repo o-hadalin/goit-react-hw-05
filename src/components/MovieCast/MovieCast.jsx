@@ -1,21 +1,37 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchMovieCast } from '../../services/api';
 import styles from './MovieCast.module.css';
 
-const PLACEHOLDER_IMAGE = 'https://placehold.co/300x450?text=No+Poster&font=roboto';
+const MovieCast = () => {
+  const { movieId } = useParams();
+  const [cast, setCast] = useState([]);
+  const [error, setError] = useState(null);
 
-const MovieCast = ({ movie }) => {
+  useEffect(() => {
+    const fetchCast = async () => {
+      try {
+        const data = await fetchMovieCast(movieId);
+        setCast(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+    fetchCast();
+  }, [movieId]);
+
+  if (error) return <p className={styles.error}>{error}</p>;
+
   return (
-    <div className={styles.card}>
-      <img
-        src={movie.poster || PLACEHOLDER_IMAGE} // Використовуй поле `poster`
-        alt={movie.title}
-        className={styles.poster}
-      />
-      <h2 className={styles.title}>{movie.title}</h2>
-      <Link to={`/movies/${movie.id}`} className={styles.detailsLink}>
-        View Details
-      </Link>
-    </div>
+    <ul className={styles.castList}>
+      {cast.map(({ id, name, profile, character }) => (
+        <li key={id} className={styles.castItem}>
+          <img src={profile} alt={name} className={styles.profileImage} />
+          <p><strong>{name}</strong></p>
+          <p>Character: {character}</p>
+        </li>
+      ))}
+    </ul>
   );
 };
 
