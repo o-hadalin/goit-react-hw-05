@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'; 
 import { fetchTrendingMovies } from '../../services/api';
 import Loader from '../../components/Loader/Loader';
 import MovieList from '../../components/MovieList/MovieList';
@@ -8,6 +9,7 @@ const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const location = useLocation(); 
 
   useEffect(() => {
     const getMovies = async () => {
@@ -32,7 +34,7 @@ const HomePage = () => {
       <h1 className={styles.title}>Trending Movies</h1>
       {loading && <Loader />}
       {error && <p className={styles.error}>{error}</p>}
-      {movies.length > 0 && <MovieList movies={movies} />}
+      {movies.length > 0 && <MovieList movies={movies} location={location} />} 
     </main>
   );
 };
