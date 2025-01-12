@@ -6,12 +6,12 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchMovieDetails } from '../../services/api';
+import {
+  fetchMovieDetails,
+  PLACEHOLDER_IMAGE_POSTER,
+} from '../../services/api';
 import Loader from '../../components/Loader/Loader';
 import styles from './MovieDetailsPage.module.css';
-
-const PLACEHOLDER_IMAGE =
-  'https://placehold.co/300x450?text=No+Poster&font=roboto';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -58,7 +58,7 @@ const MovieDetailsPage = () => {
         <>
           <h1>{movie.title}</h1>
           <img
-            src={movie.poster || PLACEHOLDER_IMAGE}
+            src={movie.poster || PLACEHOLDER_IMAGE_POSTER}
             alt={movie.title}
             className={styles.poster}
           />

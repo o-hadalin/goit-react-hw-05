@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const PLACEHOLDER_IMAGE =
-  'https://placehold.co/300x450?text=No+Photo&font=roboto';
+export const PLACEHOLDER_IMAGE_POSTER =
+  'https://placehold.co/300x450?text=No+Poster&font=roboto';
+export const PLACEHOLDER_IMAGE_PROFILE =
+  'https://placehold.co/200x300?text=No+Photo&font=roboto';
+
 const API_KEY =
   'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGFhOTc0ZWI0NGU0MzFjZTE3ZDA1YjExZTk0YTVkYSIsIm5iZiI6MTczNjQ1MjE4Ny4wLCJzdWIiOiI2NzgwMjg1YTJiMjlhOTE4ZDA0ZTUwOTAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Ig5jR_gbRAjbD8r-iaGeynVCKz3vWZdMptskIul9CZw';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -22,7 +25,7 @@ export const fetchTrendingMovies = async () => {
       title: movie.title || movie.name,
       poster: movie.poster_path
         ? `${IMAGE_BASE_URL}${movie.poster_path}`
-        : PLACEHOLDER_IMAGE,
+        : PLACEHOLDER_IMAGE_POSTER,
     }));
   } catch (error) {
     console.error('Error fetching trending movies:', error);
@@ -40,7 +43,7 @@ export const fetchMoviesByKeyword = async query => {
       title: movie.title || movie.name,
       poster: movie.poster_path
         ? `${IMAGE_BASE_URL}${movie.poster_path}`
-        : PLACEHOLDER_IMAGE,
+        : PLACEHOLDER_IMAGE_POSTER,
     }));
   } catch (error) {
     console.error('Error fetching movies by keyword:', error);
@@ -59,7 +62,7 @@ export const fetchMovieDetails = async movieId => {
       genres: movie.genres.map(genre => genre.name),
       poster: movie.poster_path
         ? `${IMAGE_BASE_URL}${movie.poster_path}`
-        : PLACEHOLDER_IMAGE,
+        : PLACEHOLDER_IMAGE_POSTER,
       releaseDate: movie.release_date,
       rating: movie.vote_average ? movie.vote_average.toFixed(2) : 'No rating',
     };
@@ -78,7 +81,7 @@ export const fetchMovieCast = async movieId => {
       character: actor.character,
       profile: actor.profile_path
         ? `${IMAGE_BASE_URL}${actor.profile_path}`
-        : PLACEHOLDER_IMAGE,
+        : PLACEHOLDER_IMAGE_PROFILE,
     }));
   } catch (error) {
     console.error('Error fetching movie cast:', error);
