@@ -35,7 +35,7 @@ const MovieDetailsPage = () => {
      if (location.state?.from) {
       navigate(location.state.from);
     } else {
-      navigate('/'); 
+      navigate('/movies'); 
     }
   };
 
