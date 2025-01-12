@@ -24,13 +24,15 @@ const MovieCast = () => {
 
   return (
     <ul className={styles.castList}>
-      {cast.map(({ id, name, profile, character }) => (
+      {cast.length === 0 ? (
+        <p>No casts available.</p>
+      ) : (cast.map(({ id, name, profile, character }) => (
         <li key={id} className={styles.castItem}>
           <img src={profile} alt={name} className={styles.profileImage} />
           <p><strong>{name}</strong></p>
           <p>Character: {character}</p>
         </li>
-      ))}
+      )))}
     </ul>
   );
 };
