@@ -1,15 +1,22 @@
-import { useParams, useNavigate, NavLink, Outlet, useLocation } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  NavLink,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieDetails } from '../../services/api';
 import Loader from '../../components/Loader/Loader';
 import styles from './MovieDetailsPage.module.css';
 
-const PLACEHOLDER_IMAGE = 'https://placehold.co/300x450?text=No+Poster&font=roboto';
+const PLACEHOLDER_IMAGE =
+  'https://placehold.co/300x450?text=No+Poster&font=roboto';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,10 +39,10 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const handleGoBack = () => {
-     if (location.state?.from) {
+    if (location.state?.from) {
       navigate(location.state.from);
     } else {
-      navigate('/movies'); 
+      navigate('/movies');
     }
   };
 
@@ -56,8 +63,12 @@ const MovieDetailsPage = () => {
             className={styles.poster}
           />
           <p>{movie.overview}</p>
-          <p><strong>Release Date:</strong> {movie.releaseDate}</p>
-          <p><strong>Rating:</strong> {movie.rating}</p>
+          <p>
+            <strong>Release Date:</strong> {movie.releaseDate}
+          </p>
+          <p>
+            <strong>Rating:</strong> {movie.rating}
+          </p>
           <div className={styles.additionalInfo}>
             <h2>Additional Information</h2>
             <ul>
@@ -67,7 +78,7 @@ const MovieDetailsPage = () => {
                   className={({ isActive }) =>
                     isActive ? styles.activeLink : styles.link
                   }
-                  state={{ from: location.state?.from }} 
+                  state={{ from: location.state?.from }}
                 >
                   Cast
                 </NavLink>
@@ -78,7 +89,7 @@ const MovieDetailsPage = () => {
                   className={({ isActive }) =>
                     isActive ? styles.activeLink : styles.link
                   }
-                  state={{ from: location.state?.from }} 
+                  state={{ from: location.state?.from }}
                 >
                   Reviews
                 </NavLink>

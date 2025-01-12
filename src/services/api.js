@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const PLACEHOLDER_IMAGE =
-  'https://placehold.co/300x450?text=No+Poster&font=roboto';
+  'https://placehold.co/300x450?text=No+Photo&font=roboto';
 const API_KEY =
   'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGFhOTc0ZWI0NGU0MzFjZTE3ZDA1YjExZTk0YTVkYSIsIm5iZiI6MTczNjQ1MjE4Ny4wLCJzdWIiOiI2NzgwMjg1YTJiMjlhOTE4ZDA0ZTUwOTAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Ig5jR_gbRAjbD8r-iaGeynVCKz3vWZdMptskIul9CZw';
 const BASE_URL = 'https://api.themoviedb.org/3';

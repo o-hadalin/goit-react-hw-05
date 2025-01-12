@@ -1,113 +1,98 @@
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  .goBackButton {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
-  
-  .goBackButton:hover {
-    background-color: #0056b3;
-  }
-  
-  .movieDetails {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .poster {
-    flex-shrink: 0;
-    width: 300px;
-    height: 450px;
-    border-radius: 10px;
-    object-fit: cover;
-    background-color: #eaeaea;
-  }
-  
-  .details {
-    flex-grow: 1;
-  }
-  
-  .title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .info {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .overview {
-    margin-top: 15px;
-    line-height: 1.6;
-  }
-  
-  .subHeading {
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-  
-  .castList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    list-style: none;
-    padding: 0;
-  }
-  
-  .castItem {
-    text-align: center;
-  }
-  
-  .castImage {
-    width: 100%;
-    height: 225px;
-    border-radius: 10px;
-    object-fit: cover;
-    background-color: #eaeaea;
-  }
-  
-  .castName {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .reviewList {
-    margin-top: 20px;
-    list-style: none;
-    padding: 0;
-  }
-  
-  .reviewItem {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-  }
-  
-  .reviewAuthor {
-    font-weight: bold;
-  }
-  
-  .reviewContent {
-    margin-top: 5px;
-    line-height: 1.5;
-  }
-  
+.detailsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.goBackButton {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.goBackButton:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.poster {
+  flex-shrink: 0;
+  width: 300px;
+  height: 450px;
+  border-radius: 10px;
+  object-fit: cover;
+  background-color: #eaeaea;
+  margin-bottom: 10px;
+}
+
+.detailsContainer > p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.detailsContainer > p strong {
+  font-weight: bold;
+}
+
+.additionalInfo {
+  margin-top: 20px;
+}
+
+.additionalInfo h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.additionalInfo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.additionalInfo li {
+  margin-bottom: 5px;
+}
+
+.link,
+.activeLink {
+  text-decoration: none;
+  font-size: 16px;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.link:hover,
+.activeLink {
+  color: #0056b3;
+}
+
+.activeLink {
+  border-bottom: 2px solid #0056b3;
+}
+
+.overview {
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.releaseDate,
+.rating {
+  margin-bottom: 10px;
+}
